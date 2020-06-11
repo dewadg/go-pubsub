@@ -34,6 +34,9 @@ func main() {
 
 		return nil
 	})
+	pubsub.RegisterSubscriber(func(ctx context.Context, s string) error {
+		return fmt.Errorf("Error with payload %s", s)
+	})
 
 	// Serve a HTTP handler
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
